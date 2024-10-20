@@ -1,0 +1,149 @@
+local whitelist = {
+    "yukjm2",      
+    "zianbg77ouai",
+    "noob_lamnoob",
+    "kl20020",
+    "FAFA_Sweet",
+    "HuangQioo",
+    "edgchenguanxi",
+    "jiangemmm",
+    "W_W103092"  
+}
+
+local function isWhitelisted(username)
+    for _, v in ipairs(whitelist) do
+        if username == v then
+            return true
+        end
+    end
+    return false
+end
+
+local function showUI()
+    if not isWhitelisted(game.Players.LocalPlayer.Name) then
+        local screenGui = Instance.new("ScreenGui")
+        local frame = Instance.new("Frame")
+        local textLabel = Instance.new("TextLabel")
+
+        screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+        frame.Parent = screenGui
+        frame.Size = UDim2.new(0, 400, 0, 200)
+        frame.Position = UDim2.new(0.5, -200, 0.5, -100)
+        frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+
+        local uiCorner = Instance.new("UICorner")
+        uiCorner.Parent = frame
+        uiCorner.CornerRadius = UDim.new(0.1, 0)
+
+        textLabel.Parent = frame
+        textLabel.Size = UDim2.new(1, 0, 1, 0)
+        textLabel.Text = "您不在白名单中，无法使用此脚本"
+        textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        textLabel.Font = Enum.Font.GothamBold
+        textLabel.TextSize = 30
+        textLabel.BackgroundTransparency = 1
+
+        return
+    else
+        local screenGui = Instance.new("ScreenGui")
+        local frame = Instance.new("Frame")
+        local textLabel = Instance.new("TextLabel")
+
+        screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+        frame.Parent = screenGui
+        frame.Size = UDim2.new(0, 400, 0, 200)
+        frame.Position = UDim2.new(0.5, -200, 0.5, -100)
+        frame.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+
+        local uiCorner = Instance.new("UICorner")
+        uiCorner.Parent = frame
+        uiCorner.CornerRadius = UDim.new(0.1, 0)
+
+        textLabel.Parent = frame
+        textLabel.Size = UDim2.new(1, 0, 1, 0)
+        textLabel.Text = "你已成功添加白名单！"
+        textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        textLabel.Font = Enum.Font.GothamBold
+        textLabel.TextSize = 30
+        textLabel.BackgroundTransparency = 1
+
+        wait(3)
+        screenGui:Destroy()
+    end
+
+    local screenGui = Instance.new("ScreenGui")
+    local frame = Instance.new("Frame")
+    local textLabel = Instance.new("TextLabel")
+    local textButton = Instance.new("TextButton")
+    local uiCorner = Instance.new("UICorner")
+    local uiGradient = Instance.new("UIGradient")
+
+    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    frame.Parent = screenGui
+    frame.Size = UDim2.new(0, 500, 0, 350)
+    frame.Position = UDim2.new(0.5, -250, 0.4, -175)
+    frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+
+    uiCorner.Parent = frame
+    uiCorner.CornerRadius = UDim.new(0.1, 0)
+
+    uiGradient.Parent = frame
+    uiGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 255)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 128, 255))
+    }
+
+    textLabel.Parent = frame
+    textLabel.Size = UDim2.new(1, 0, 0.2, 0)
+    textLabel.Position = UDim2.new(0, 0, 0, 10)
+    textLabel.Text = "欢迎使用宇定制脚本"
+    textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    textLabel.Font = Enum.Font.GothamBold
+    textLabel.TextSize = 35
+    textLabel.BackgroundTransparency = 1
+
+    local function createLabel(parent, text, position)
+        local label = Instance.new("TextLabel")
+        label.Parent = parent
+        label.Size = UDim2.new(1, 0, 0.1, 0)
+        label.Position = position
+        label.Text = text
+        label.TextColor3 = Color3.fromRGB(255, 255, 255)
+        label.Font = Enum.Font.Gotham
+        label.TextSize = 18
+        label.BackgroundTransparency = 1
+        label.TextXAlignment = Enum.TextXAlignment.Left
+        return label
+    end
+
+    createLabel(frame, "您的注入器: " .. (identifyexecutor and identifyexecutor() or "未知"), UDim2.new(0, 10, 0.25, 0))
+    createLabel(frame, "您的用户名: " .. game.Players.LocalPlayer.Name, UDim2.new(0, 10, 0.35, 0))
+    createLabel(frame, "您的名称: " .. game.Players.LocalPlayer.DisplayName, UDim2.new(0, 10, 0.45, 0))
+    createLabel(frame, "您当前服务器的ID: " .. tostring(game.GameId), UDim2.new(0, 10, 0.55, 0))
+    createLabel(frame, "您的用户ID: " .. tostring(game.Players.LocalPlayer.UserId), UDim2.new(0, 10, 0.65, 0))
+    createLabel(frame, "您当前服务器的名称: " .. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, UDim2.new(0, 10, 0.75, 0))
+    createLabel(frame, "获取客户端ID: " .. tostring(game:GetService("RbxAnalyticsService"):GetClientId()), UDim2.new(0, 10, 0.85, 0))
+
+    textButton.Parent = frame
+    textButton.Size = UDim2.new(0.6, 0, 0.15, 0)
+    textButton.Position = UDim2.new(0.2, 0, 0.9, 0)
+    textButton.Text = "点击确认"
+    textButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    textButton.Font = Enum.Font.GothamBold
+    textButton.TextSize = 25
+    textButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+
+    local buttonCorner = Instance.new("UICorner")
+    buttonCorner.Parent = textButton
+    buttonCorner.CornerRadius = UDim.new(0.3, 0)
+
+    textButton.MouseButton1Click:Connect(function()
+        screenGui:Destroy()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
+    end)
+end
+
+showUI()
