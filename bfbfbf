@@ -143,7 +143,7 @@ local function showUI()
 
     textButton.MouseButton1Click:Connect(function()
         screenGui:Destroy()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()
     end)
 end
 
